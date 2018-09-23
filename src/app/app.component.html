@@ -1,0 +1,171 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="form-group col-sm-12">
+  <h2>Pipe</h2>
+  <label for="title" class="col-sm-2">Title</label><input type="text" [(ngModel)]="title">
+  <br/>
+  <br/>
+  <div class="form-group">
+    <label for="" class="col-sm-2">Title Case</label>
+    <label for="titleCase">{{ title | titleCase }}</label>
+  </div>
+</div>
+<br/>
+<div class="form-group col-sm-12">
+  <h2>Favourite</h2>
+  <favourite [is-favourite]="post.isFavourite" (change)="onFavouriteChanged($event)"></favourite>
+  <br/><br/>
+</div>
+
+<div class="form-group col-sm-12">
+  <h2>Ng-Container and Ng-Content</h2>
+  <panel>
+    <ng-container class="heading">Heading</ng-container>
+    <div class="body">
+      <h2>Body</h2>
+      <p>Some content here..</p>
+    </div>
+  </panel>
+</div>
+
+<div class="form-group col-sm-12">
+  <h2>Like</h2>
+  <like
+  [likesCount] = "tweet.likesCount"
+  [isActive] = "tweet.isLiked"
+  >
+  </like>
+  <br/><br/>
+</div>
+<div class="form-group col-sm-12">
+  <h2>Directive (ngIf) and ng-template</h2>
+  <button class="btn btn-success" (click)="loadCourses()">Load Courses</button>
+  <div *ngIf="courses.length > 0; then coursesList else noCourses"></div>
+  <ng-template #coursesList>
+    <h3>List of courses</h3>
+    <ul>
+      <li *ngFor="let course of courses;index as i;even as isEven trackBy:trackCourse">
+        {{ i }} - {{ course.name}} <span *ngIf="isEven">(EVEN)</span>
+        <button class="btn btn-danger" (click)="onRemove(course)">Remove</button>
+      </li>
+    </ul>
+  </ng-template>
+  <ng-template #noCourses>
+    <h3>No courses yet</h3>
+  </ng-template>
+</div>
+
+<div class="form-group col-sm-12">
+  <h2>Directive (ngHidden)</h2>
+  <div [hidden]="courses.length == 0">
+    <h3>List of courses</h3>
+    <ul>
+      <li *ngFor="let course of courses">
+        {{ course.name}}
+      </li>
+      </ul>
+    </div>
+    <div [hidden]="courses.length > 0">
+      <h3>No courses yet</h3>
+    </div>
+</div>
+
+<div class="form-group col-sm-12">
+  <h3>Directive(ngIf) and ng-template </h3>
+  <ng-template [ngIf]="courses.length > 0">
+    <div>
+      <h1>List Of Courses</h1>
+    </div>
+  </ng-template>
+  <ng-template [ngIf]="!(courses.length > 0)">
+    <div>
+      <h1>No Courses yet</h1>
+    </div>
+  </ng-template>
+</div>
+
+<div class="form-group col-sm-12">
+  <h2>Class</h2>
+  <ul class="nav nav-pills">
+      <li [class.active]="viewMode ==='map'" ><a (click) ="viewMode ='map'" href="#">Map View</a></li>
+      <li [class.active]="viewMode ==='list'"><a (click) ="viewMode ='list'"  href="#">List View</a></li>
+  </ul>
+</div>
+
+<div class="form-group col-sm-12">
+  <h2>NgSwitchCase</h2>
+  <div [ngSwitch]="viewMode">
+    <div *ngSwitchCase="'map'">Map View Content</div>
+    <div *ngSwitchCase="'list'">List View Content</div>
+    <div *ngSwitchDefault>Otherwise</div>
+  </div>
+</div>
+
+<div class="form-group col-sm-12">
+  <h2>NgStyle</h2>
+  <button
+  [ngStyle]="{
+    'background-color': canSave ? 'blue':'gray',
+    'color': canSave ? 'white': 'black',
+    'font-weight': canSave ? 'bold':'normal'
+  }">
+  Save
+  </button>
+</div>
+
+<div class="form-group col-sm-12">
+  <h2>Safe Traversal Operator</h2>
+  <span>{{ task.assignee?.name}}</span>
+</div>
+
+<div class="form-group col-sm-12">
+  <h2>Event Listener</h2>
+  <input type="text" [appInputFormat]="'uppercase'">
+  <br/><br/>
+</div>
+
+<div class="form-group col-sm-12">
+  <h2>Directives, NgClass, Event</h2>
+  <zippy title="Shipping Details">
+    Shipping Details Content
+  </zippy>
+  <br/><br/>
+</div>
+
+<div class="form-group col-sm-12">
+  <h2>Contact Form</h2>
+  <contact-form></contact-form>
+  <br/><br/>
+</div>
+
+<div class="form-group col-sm-12">
+  <h2>New Course Form</h2>
+  <new-course-form></new-course-form>
+  <br/><br/>
+</div>
+
+<div class="form-group col-sm-12">
+  <h2>Reactive Form</h2>
+  <signup-form></signup-form>
+  <br/><br/>
+</div>
+
+<div class="form-group col-sm-12">
+  <h2>Form Array</h2>
+  <new-course-form-array></new-course-form-array>
+  <br/><br/>
+</div>
+
+<div class="form-group col-sm-12">
+  <h2>Form Builder</h2>
+  <new-course-form-builder></new-course-form-builder>
+  <br/><br/>
+</div>
+
+<div class="form-group col-sm-12">
+  <h2>Change Password</h2>
+  <change-password></change-password>
+</div>
+
+
+
+
